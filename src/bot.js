@@ -1,4 +1,4 @@
-const {Client,Intents,msgAttachment}=require('discord.js')
+const {Client,Intents,msgAttachment, GuildMember}=require('discord.js')
 
 const YTDL=require("ytdl-core")
 
@@ -18,18 +18,19 @@ client.on('ready',()=>{
     client.user.setActivity("I'm here for you")
 })
 
-client.on("message",(msg)=>{    
-    console.log(client.channels.cache.get('id'))
-           
+
+
+client.on("message",(msg)=>{         
+    
     if(msg.content==="!join"||msg.content.toUpperCase()==="!join"){
-        if(msg.member.voice.channel==="897808872868294696"){            
-            msg.guild.member(897576489594286101).voice.setChannel(msg.member.voice.channel); //vai juntar ao canal de voz da pessoa que o chamou
-            ready=true
+        if(msg.member.voice.channelID==="897808872868294696"){                
+          GuildMember.voice.setChannel(msg.member.voice.channelID)            
+          ready=true
         }else{            
             msg.channel.send("You need to be in voice channel to use this command")
             
         }
-    }if(msg.content===msg.content==="!leave"||msg.content.toUpperCase()==="!leave"){
+    }if(msg.content==="!leave"||msg.content.toUpperCase()==="!leave"){
         if(msg.member.voiceChannel){
             msg.member.voiceChannel.leave(); //vai sair do canal de voz da pessoa que o chamou
             ready = false;
