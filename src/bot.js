@@ -1,4 +1,4 @@
-const {Client,Intents,msgAttachment, GuildMember}=require('discord.js')
+const {Client,Intents,msgAttachment, GuildMember, Guild}=require('discord.js')
 
 const YTDL=require("ytdl-core")
 
@@ -24,7 +24,7 @@ client.on("message",(msg)=>{
     
     if(msg.content==="!join"||msg.content.toUpperCase()==="!join"){
         if(msg.member.voice.channelID==="897808872868294696"){                
-          GuildMember.voice.setChannel(msg.member.voice.channelID)            
+            
           ready=true
         }else{            
             msg.channel.send("You need to be in voice channel to use this command")
